@@ -1,2 +1,2 @@
-# net-suite
-NetControlSuite_V2
+# shivan-nctrls
+shivan-nctrls_v2
