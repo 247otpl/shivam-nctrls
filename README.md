@@ -1,3 +1,226 @@
+NetControlSuite v2
+
+NetControlSuite is a modular, vendor-agnostic Network Lifecycle, Automation, and Event Intelligence platform designed to manage network infrastructure in a structured, auditable, and scalable manner.
+
+It unifies:
+
+Device Discovery
+
+Registry & Lifecycle Management
+
+Configuration Backup & Comparison
+
+Command Execution
+
+Inventory & Commercial Tracking
+
+Event Processing & Correlation
+
+Alerting & Governance
+
+📌 Project Vision
+
+NetControlSuite aims to provide:
+
+A Unified Network Control & Governance Platform that combines automation, monitoring, configuration intelligence, and commercial lifecycle tracking into a single structured system.
+
+Unlike traditional tools that focus on only automation or monitoring, NetControlSuite integrates:
+
+Operational control
+
+State awareness
+
+Change detection
+
+Lifecycle governance
+
+Alert correlation
+
+🚀 Key Features
+1️⃣ Device Discovery & Provisioning
+
+Subnet scanning
+
+Approval-based onboarding
+
+UUID-based device identity
+
+Site-based registry structure
+
+Lifecycle states (ACTIVE / DECOMMISSIONED)
+
+2️⃣ Unified Device Registry
+
+Each site maintains a structured device_registry.json containing:
+
+UUID device_id
+
+mgmt_ip
+
+protocol (SSH/Telnet)
+
+authentication data
+
+lifecycle status
+
+metadata timestamps
+
+The registry acts as the single source of truth.
+
+3️⃣ Execution Planner
+
+All execution modules (Backup, Inventory, Command Executor) rely on:
+
+Centralized device selection logic
+
+Lifecycle enforcement
+
+Mode-based filtering:
+
+all
+
+site
+
+device_ids
+
+mgmt_ips
+
+Prevents duplication of selection logic.
+
+4️⃣ Configuration Backup
+
+Multi-vendor CLI support
+
+Enable mode handling
+
+Raw session logging
+
+Versioned configuration storage
+
+Structured backup history
+
+Diff reports (TXT & HTML)
+
+Config Compare Phase
+
+Detects configuration drift
+
+Identifies changes between versions
+
+Supports compliance validation
+
+Enables governance-level monitoring
+
+5️⃣ Command Executor
+
+Controlled execution of command sets
+
+Execution history tracking
+
+Per-device logging
+
+Structured reporting
+
+6️⃣ Inventory Management
+
+Vendor detection (priority-based resolution)
+
+Adapter-based parsing model
+
+Field-level source tracking (manual vs auto)
+
+Change detection log
+
+Contract monitoring
+
+Inventory tracks:
+
+Hostname
+
+Vendor
+
+Platform
+
+Model
+
+Serial number
+
+OS version
+
+Hardware version
+
+Commercial contract metadata
+
+7️⃣ Event Processing Engine
+
+Structured event ingestion
+
+Event normalization
+
+Device-based event association
+
+Event history logging
+
+8️⃣ Correlation Phase
+
+Reduces noise by:
+
+Grouping related events
+
+Identifying potential root causes
+
+Preventing alert storms
+
+Example:
+Multiple interface-down events → Single correlated incident
+
+9️⃣ Alerting System
+
+Event-driven alert generation
+
+Severity handling
+
+Flap tracking
+
+Escalation readiness
+
+Integration-ready architecture
+
+Alerts may originate from:
+
+Device down
+
+Config drift
+
+Inventory failure
+
+Contract expiry
+
+Correlated event clusters
+
+🏗 Architecture Overview
+
+NetControlSuite follows a layered modular architecture:
+
+API Layer (FastAPI + Swagger)
+        ↓
+Control Layer (ExecutionPlanner, Alert Engine, Correlation)
+        ↓
+Module Layer
+  - Discovery
+  - Provisioning
+  - Config Backup
+  - Command Executor
+  - Inventory
+  - Events
+        ↓
+Core Layer
+  - Registry
+  - Protocol Engines (SSH/Telnet)
+  - Diff Engine
+        ↓
+Data Layer (Structured File-Based Storage)
+📂 Current Project Structure (Full)
 │   NetCS_Dir_Stru.txt
 │   README.md
 │   
@@ -241,24 +464,12 @@
 │                   │   │   ├───21-02-2026
 │                   │   │   │       !enable-14_v1.txt
 │                   │   │   │       4e053e30-14e3-4e76-a0cb-6bce2720318c-5_v1.txt
-│                   │   │   │       4e053e30-14e3-4e76-a0cb-6bce2720318c-5_v2.txt
-│                   │   │   │       4e053e30-14e3-4e76-a0cb-6bce2720318c-5_v3.txt
-│                   │   │   │       e6d90449-f572-41b7-80b2-cc893a787b59-14_v1.txt
-│                   │   │   │       e6d90449-f572-41b7-80b2-cc893a787b59-14_v2.txt
-│                   │   │   │       e6d90449-f572-41b7-80b2-cc893a787b59-14_v3.txt
-│                   │   │   │       e6d90449-f572-41b7-80b2-cc893a787b59-14_v4.txt
-│                   │   │   │       e6d90449-f572-41b7-80b2-cc893a787b59-14_v5.txt
 │                   │   │   │       L1-PoE-3_v1.txt
 │                   │   │   │       L1-PoE-3_v2.txt
-│                   │   │   │       L1-PoE-3_v3.txt
 │                   │   │   │       L5-DATA-4_v1.txt
 │                   │   │   │       L5-DATA-4_v2.txt
-│                   │   │   │       L5-DATA-4_v3.txt
 │                   │   │   │       TEST-PROBUS-15_v1.txt
 │                   │   │   │       TEST-PROBUS-15_v2.txt
-│                   │   │   │       TEST-PROBUS-15_v3.txt
-│                   │   │   │       TEST-PROBUS-15_v4.txt
-│                   │   │   │       TEST-PROBUS-15_v5.txt
 │                   │   │   │       
 │                   │   │   └───23-02-2026
 │                   │   │           e6d90449-f572-41b7-80b2-cc893a787b59-14_v1.txt
@@ -270,41 +481,17 @@
 │                   │   ├───debug_raw
 │                   │   │   ├───21-02-2026
 │                   │   │   │       192.168.9.14-16.22.16-ssh.raw
-│                   │   │   │       192.168.9.14-16.56.09-ssh.raw
-│                   │   │   │       192.168.9.14-17.26.27-ssh.raw
-│                   │   │   │       192.168.9.14-17.53.03-ssh.raw
-│                   │   │   │       192.168.9.14-17.56.11-ssh.raw
-│                   │   │   │       192.168.9.14-18.02.59-telnet.raw
 │                   │   │   │       192.168.9.15-16.24.35-ssh.raw
-│                   │   │   │       192.168.9.15-16.58.28-ssh.raw
-│                   │   │   │       192.168.9.15-17.29.18-ssh.raw
-│                   │   │   │       192.168.9.15-17.38.05-ssh.raw
-│                   │   │   │       192.168.9.15-17.48.08-ssh.raw
 │                   │   │   │       192.168.9.3-16.21.58-ssh.raw
 │                   │   │   │       192.168.9.3-16.55.51-ssh.raw
-│                   │   │   │       192.168.9.3-17.26.09-ssh.raw
-│                   │   │   │       192.168.9.4-16.24.07-telnet.raw
 │                   │   │   │       192.168.9.4-16.58.01-telnet.raw
-│                   │   │   │       192.168.9.4-17.28.50-telnet.raw
-│                   │   │   │       192.168.9.5-16.24.29-ssh.raw
-│                   │   │   │       192.168.9.5-16.58.22-ssh.raw
 │                   │   │   │       192.168.9.5-17.29.11-ssh.raw
 │                   │   │   │       
 │                   │   │   └───23-02-2026
-│                   │   │           192.168.9.14-10.43.51-telnet.raw
 │                   │   │           192.168.9.14-10.51.41-telnet.raw
 │                   │   │           
 │                   │   ├───execution_logs
 │                   │   │       10957b96-6701-405b-b595-85c70d5095af.json
-│                   │   │       1a0968fe-ac5b-48e9-a6d8-5ee465a397cf.json
-│                   │   │       2ed93b17-afa5-43fd-8231-a073cd057058.json
-│                   │   │       38dbce95-4676-498e-a93f-16e149b300cd.json
-│                   │   │       39396ebb-7524-4ccf-95ca-f92ffa80e363.json
-│                   │   │       5b7867de-fa5d-42cf-8cd9-dc838530b258.json
-│                   │   │       6574aeee-12b8-4b27-9c9a-4e26526efe1b.json
-│                   │   │       96d45f84-3bee-4005-9247-30bee22bb217.json
-│                   │   │       bc46d5e6-9db0-48d3-81ea-2d17daea1d4c.json
-│                   │   │       f006329e-5c2a-46ab-adb2-3fe8ae632456.json
 │                   │   │       
 │                   │   ├───logs
 │                   │   │   ├───21-02-2026
@@ -349,3 +536,128 @@
         login_password.txt
         login_username.txt
         
+👥 Intended Users
+Network Operators
+
+Run backups
+
+Execute commands
+
+Review alerts
+
+Network Engineers
+
+Analyze configuration drift
+
+Review change logs
+
+Validate device inventory
+
+NOC Teams
+
+Monitor correlated events
+
+Respond to alerts
+
+IT Governance / Procurement
+
+Track support contracts
+
+Monitor hardware lifecycle
+
+Review compliance status
+
+🖥 API Interface
+
+NetControlSuite uses FastAPI and provides interactive API documentation via Swagger:
+
+http://127.0.0.1:8000/docs
+
+Modules exposed include:
+
+Discovery
+
+Provisioning
+
+Config Backup
+
+Command Executor
+
+Inventory
+
+Alerts
+
+Events
+
+⚙️ Deployment
+Current Model
+
+Python 3.12
+
+FastAPI
+
+Uvicorn ASGI server
+
+On-premise deployment
+
+File-based structured storage
+
+Run locally:
+
+uvicorn backend.main:app --reload
+🔐 Design Principles
+
+Modular architecture
+
+UUID-based identity
+
+Lifecycle enforcement
+
+Vendor-agnostic adapters
+
+State-aware automation
+
+Structured logging
+
+Governance-ready design
+
+Separation of API and core logic
+
+🛣 Roadmap
+Phase 2
+
+Vendor-specific CLI abstraction
+
+Enhanced prompt detection
+
+ANSI stripping
+
+Retry logic
+
+Phase 3
+
+Stand-alone dashboard UI App
+
+RBAC (Role-Based Access Control)
+
+Scheduled jobs (backup, inventory, compliance)
+
+Alert escalation pipeline
+
+Phase 4
+
+Database-backed storage (PostgreSQL/SQLite)
+
+Multi-tenant scaling
+
+External integrations (SIEM/NMS)
+
+🎯 Long-Term Vision
+
+NetControlSuite aims to evolve into:
+
+A Unified Network Lifecycle & Event Intelligence Platform combining Automation, Monitoring, Governance, and Commercial Control.
+
+📜 License
+
+(Under development phase. We will update later)
