@@ -1,0 +1,92 @@
+[
+    {
+        "ip": "192.168.9.3",
+        "icmp": true,
+        "ssh_open": true,
+        "telnet_open": true
+    },
+    {
+        "ip": "192.168.9.14",
+        "icmp": true,
+        "ssh_open": true,
+        "telnet_open": true
+    },
+    {
+        "ip": "192.168.9.4",
+        "icmp": true,
+        "ssh_open": true,
+        "telnet_open": true
+    },
+    {
+        "ip": "192.168.9.5",
+        "icmp": true,
+        "ssh_open": true,
+        "telnet_open": false
+    },
+    {
+        "ip": "192.168.9.15",
+        "icmp": true,
+        "ssh_open": true,
+        "telnet_open": false
+    },
+    {
+        "ip": "192.168.9.6",
+        "icmp": true,
+        "ssh_open": false,
+        "telnet_open": false
+    },
+    {
+        "ip": "192.168.9.11",
+        "icmp": false,
+        "ssh_open": false,
+        "telnet_open": false
+    },
+    {
+        "ip": "192.168.9.10",
+        "icmp": false,
+        "ssh_open": false,
+        "telnet_open": false
+    },
+    {
+        "ip": "192.168.9.12",
+        "icmp": false,
+        "ssh_open": false,
+        "telnet_open": false
+    },
+    {
+        "ip": "192.168.9.17",
+        "icmp": false,
+        "ssh_open": false,
+        "telnet_open": false
+    },
+    {
+        "ip": "192.168.9.16",
+        "icmp": false,
+        "ssh_open": false,
+        "telnet_open": false
+    },
+    {
+        "ip": "192.168.9.8",
+        "icmp": false,
+        "ssh_open": false,
+        "telnet_open": false
+    },
+    {
+        "ip": "192.168.9.9",
+        "icmp": false,
+        "ssh_open": false,
+        "telnet_open": false
+    },
+    {
+        "ip": "192.168.9.7",
+        "icmp": false,
+        "ssh_open": false,
+        "telnet_open": false
+    },
+    {
+        "ip": "192.168.9.13",
+        "icmp": false,
+        "ssh_open": false,
+        "telnet_open": false
+    }
+]

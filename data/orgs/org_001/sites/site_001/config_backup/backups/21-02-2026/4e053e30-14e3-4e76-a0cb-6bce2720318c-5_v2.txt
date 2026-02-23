@@ -1,0 +1,3 @@
+% Invalid Command
+^
+% Invalid input detected at '^' marker

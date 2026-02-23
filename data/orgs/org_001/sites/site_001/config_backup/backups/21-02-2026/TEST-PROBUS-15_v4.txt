@@ -1,0 +1,107 @@
+^
+!
+service password-encryption
+!
+hostname TEST-PROBUS
+!
+no banner motd
+!
+username manager privilege 15 password 8 $1$bJoVec4D$JwOJGPr7YqoExA0GVasdE0
+username admin privilege 15 password 8 $5$dwVqOYBn$1l4YZGkfgH8rsjHetmb8dXy7tEcxOIIR7cuZYbx6Ou/
+username user privilege 15 password 8 $5$8F7zE5gX$hNUZXjullXFoAsDRs0WIwXlOiW13HeNC.OMjQVHO0k/
+!
+!
+ssh server allow-users admin
+ssh server allow-users manager
+ssh server allow-users user
+service ssh
+!
+no service telnet
+!
+service http
+!
+clock timezone IST plus 5:30
+!
+snmp-server
+snmp-server community OptoNet123
+snmp-server host 10.1.2.130 version 2c OptoNet123
+!
+!
+!
+aaa authentication enable default local
+aaa authentication login default local
+!
+!
+!
+!
+ntp server 192.168.9.1
+!
+!
+ip domain-lookup
+!
+!
+!
+no service dhcp-server
+!
+lldp run
+!
+spanning-tree mode rstp
+!
+service power-inline
+lacp global-passive-mode enable
+!
+vlan database
+vlan 2-6,10,100,131-132 state enable
+!
+interface port1.0.1
+description Module-B-validation-on-AT-03/02/2026:16:34
+switchport
+switchport mode access
+switchport access vlan 100
+spanning-tree portfast
+!
+interface port1.0.2
+description Module-B-validation-v2
+switchport
+switchport mode access
+switchport access vlan 100
+spanning-tree portfast
+!
+interface port1.0.3-1.0.4
+switchport
+switchport mode access
+switchport access vlan 100
+spanning-tree portfast
+!
+interface port1.0.5-1.0.14
+switchport
+switchport mode access
+switchport access vlan 2
+spanning-tree portfast
+!
+interface port1.0.15
+switchport
+switchport mode trunk
+switchport trunk allowed vlan add 2-6,10,100,131-132
+spanning-tree portfast
+!
+interface port1.0.16
+switchport
+switchport mode trunk
+switchport trunk allowed vlan add 2-6,10,100,131-132
+!
+interface port1.0.17-1.0.18
+switchport
+switchport mode trunk
+switchport trunk allowed vlan add 2-6,10,100
+!
+interface vlan1
+ip address 192.168.9.15/24
+!
+ip route 0.0.0.0/0 192.168.9.1
+!
+line con 0
+line vty 0 7
+exec-timeout 0 0
+!
+end

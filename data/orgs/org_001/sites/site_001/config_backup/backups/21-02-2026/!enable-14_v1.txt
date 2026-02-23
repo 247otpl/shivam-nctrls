@@ -1,0 +1,4 @@
+#2026-02-21 17:57:46,[User]/4/Login the CLI failed by vty0 (10.1.100.34).
+#2026-02-21 17:57:52,[User]/5/Login the CLI by admin on vty0 (10.1.100.34).
+!terminal length 0!terminal datadump#2026-02-21 17:59:47,[User]/5/Logout the CLI.
+!show running-config

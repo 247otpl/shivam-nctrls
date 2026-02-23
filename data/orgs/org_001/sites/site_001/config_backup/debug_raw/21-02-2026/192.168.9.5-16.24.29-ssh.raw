@@ -1,0 +1,18 @@
+============================================================
+RAW SESSION START
+Protocol   : ssh
+Destination: 192.168.9.5
+Start Time : 21-02-2026 16:24:29
+============================================================
+terminal length 0
+% Invalid Command
+DGS-1210-28P> terminal datadump
+% Invalid Command
+DGS-1210-28P> show running-config
+
+show running-config
+     ^
+% Invalid input detected at '^' marker
+DGS-1210-28P> 
+[21-02-2026 16:24:35] [SESSION_END] SUCCESS
+============================================================

@@ -1,0 +1,20 @@
+============================================================
+RAW SESSION START
+Protocol   : ssh
+Destination: 192.168.9.3
+Start Time : 23-02-2026 10:57:30
+============================================================
+show version
+Active-image: flash://system/images/image1.bin
+  Version: 2.5.5.47
+  MD5 Digest: ff7132e875fd9ac0699a4b7bf04087c4
+  Date: 06-May-2020
+  Time: 17:32:16
+Inactive-image: flash://system/images/_image1.bin
+  Version: 2.5.5.47
+  MD5 Digest: ff7132e875fd9ac0699a4b7bf04087c4
+  Date: 06-May-2020
+  Time: 17:32:16
+L1-PoE#
+[23-02-2026 10:57:31] [SESSION_END] SUCCESS
+============================================================

@@ -1,0 +1,9 @@
+============================================================
+RAW SESSION START
+Protocol   : telnet
+Destination: 192.168.9.14
+Start Time : 23-02-2026 10:51:41
+============================================================
+terminal length 0terminal datadumpshow running-config
+[23-02-2026 10:54:57] [SESSION_END] SUCCESS
+============================================================

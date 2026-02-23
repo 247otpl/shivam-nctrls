@@ -1,0 +1,132 @@
+config-file-header
+L1-PoE
+v2.5.5.47 / RTESLA2.5.5_930_364_286
+CLI v1.0
+file SSD indicator encrypted
+@
+ssd-control-start
+ssd config
+ssd file passphrase control unrestricted
+no ssd file integrity control
+ssd-control-end cb0a3fdb1f3a1af4e4430033719968c0
+!
+!
+unit-type-control-start
+unit-type unit 1 network gi uplink none
+unit-type-control-end
+!
+spanning-tree mode rapid-pvst
+spanning-tree priority 24576
+spanning-tree vlan 2-5,10 priority 24576
+vlan database
+vlan 2-6,10,100,131
+exit
+voice vlan oui-table add 0001e3 Siemens_AG_phone
+voice vlan oui-table add 00036b Cisco_phone
+voice vlan oui-table add 00096e Avaya
+voice vlan oui-table add 000fe2 H3C_Aolynk
+voice vlan oui-table add 0060b9 Philips_and_NEC_AG_phone
+voice vlan oui-table add 00d01e Pingtel_phone
+voice vlan oui-table add 00e075 Polycom/Veritel_phone
+voice vlan oui-table add 00e0bb 3Com_phone
+lldp chassis-id host-name
+bonjour interface range vlan 1
+radius server traps authentication failure
+radius server traps authentication success
+hostname L1-PoE
+line console
+exec-timeout 0
+exit
+line ssh
+exec-timeout 0
+exit
+line telnet
+exec-timeout 0
+exit
+logging host 10.1.100.200
+logging aggregation on
+aaa authentication login authorization SSH local
+aaa authentication enable authorization SSH enable
+aaa authentication login authorization Telnet radius tacacs local
+aaa authentication enable authorization Telnet radius tacacs enable
+aaa authentication login Console local
+aaa authentication enable Console enable
+aaa accounting login start-stop group tacacs+
+line telnet
+login authentication Telnet
+enable authentication Telnet
+password da39a3ee5e6b4b0d3255bfef95601890afd80709 encrypted
+exit
+line ssh
+login authentication SSH
+enable authentication SSH
+password da39a3ee5e6b4b0d3255bfef95601890afd80709 encrypted
+exit
+line console
+login authentication Console
+enable authentication Console
+password da39a3ee5e6b4b0d3255bfef95601890afd80709 encrypted
+exit
+no passwords complexity enable
+passwords aging 0
+username user password encrypted 12dea96fec20593566ab75692c9949596833adc9 privilege 15
+username admin password encrypted 19bb1fc36f611cf460add3774f1216099be3abdc privilege 15
+username optonet password encrypted 19bb1fc36f611cf460add3774f1216099be3abdc privilege 15
+ip ssh server
+ip ssh password-auth
+ip ssh-client server authentication
+snmp-server server
+snmp-server engineID local 8000000903ac4a567a7073
+no snmp-server trap authentication
+snmp-server view system system included
+snmp-server view interfaces interfaces included
+snmp-server community publicc ro view Default
+snmp-server community OptoNet123 ro view Default
+snmp-server host 10.1.100.200 traps version 2c OptoNet123
+ip http timeout-policy 0
+clock timezone J +5 minutes 30
+sntp server 192.168.9.1 poll
+ip telnet server
+!
+interface vlan 1
+ip address 192.168.9.3 255.255.255.0
+no ip address dhcp
+!
+interface vlan 6
+name AV
+!
+interface vlan 10
+name GuestVLAN
+!
+interface vlan 100
+name "MCSA VLAN 100"
+!
+interface GigabitEthernet1
+description AIR-CAP2702I
+switchport mode trunk
+!
+interface GigabitEthernet2
+description Module-B-validation-v1
+!
+interface GigabitEthernet13
+description AIR-AP3802I
+switchport mode trunk
+!
+interface GigabitEthernet25
+description "Uplink from FG-80-Port3"
+switchport mode trunk
+!
+interface GigabitEthernet26
+description "Uplink to 5F SG300-38-GE28"
+switchport mode trunk
+!
+interface GigabitEthernet27
+switchport mode trunk
+!
+interface GigabitEthernet28
+switchport mode trunk
+!
+exit
+macro auto disabled
+ip igmp snooping
+ip default-gateway 192.168.9.1

@@ -1,0 +1,6 @@
+
+terminal length 0
+
+terminal datadump
+
+show running-config

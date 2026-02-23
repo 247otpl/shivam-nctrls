@@ -1,0 +1,117 @@
+{
+    "run_id": "8ba20718-0696-49ca-9e3f-41f4768e687e",
+    "module": "discovery",
+    "org_id": "org_001",
+    "site_id": "site_001",
+    "status": "APPROVED",
+    "start_time": "2026-02-21T10:42:01Z",
+    "end_time": "2026-02-21T10:42:04Z",
+    "total_devices": 15,
+    "results": [
+        {
+            "device_id": "192.168.9.3",
+            "status": "UP",
+            "icmp": true,
+            "ssh_open": true,
+            "telnet_open": true
+        },
+        {
+            "device_id": "192.168.9.14",
+            "status": "UP",
+            "icmp": true,
+            "ssh_open": true,
+            "telnet_open": true
+        },
+        {
+            "device_id": "192.168.9.4",
+            "status": "UP",
+            "icmp": true,
+            "ssh_open": true,
+            "telnet_open": true
+        },
+        {
+            "device_id": "192.168.9.5",
+            "status": "UP",
+            "icmp": true,
+            "ssh_open": true,
+            "telnet_open": false
+        },
+        {
+            "device_id": "192.168.9.15",
+            "status": "UP",
+            "icmp": true,
+            "ssh_open": true,
+            "telnet_open": false
+        },
+        {
+            "device_id": "192.168.9.6",
+            "status": "UP",
+            "icmp": true,
+            "ssh_open": false,
+            "telnet_open": false
+        },
+        {
+            "device_id": "192.168.9.11",
+            "status": "DOWN",
+            "icmp": false,
+            "ssh_open": false,
+            "telnet_open": false
+        },
+        {
+            "device_id": "192.168.9.10",
+            "status": "DOWN",
+            "icmp": false,
+            "ssh_open": false,
+            "telnet_open": false
+        },
+        {
+            "device_id": "192.168.9.12",
+            "status": "DOWN",
+            "icmp": false,
+            "ssh_open": false,
+            "telnet_open": false
+        },
+        {
+            "device_id": "192.168.9.17",
+            "status": "DOWN",
+            "icmp": false,
+            "ssh_open": false,
+            "telnet_open": false
+        },
+        {
+            "device_id": "192.168.9.16",
+            "status": "DOWN",
+            "icmp": false,
+            "ssh_open": false,
+            "telnet_open": false
+        },
+        {
+            "device_id": "192.168.9.8",
+            "status": "DOWN",
+            "icmp": false,
+            "ssh_open": false,
+            "telnet_open": false
+        },
+        {
+            "device_id": "192.168.9.9",
+            "status": "DOWN",
+            "icmp": false,
+            "ssh_open": false,
+            "telnet_open": false
+        },
+        {
+            "device_id": "192.168.9.7",
+            "status": "DOWN",
+            "icmp": false,
+            "ssh_open": false,
+            "telnet_open": false
+        },
+        {
+            "device_id": "192.168.9.13",
+            "status": "DOWN",
+            "icmp": false,
+            "ssh_open": false,
+            "telnet_open": false
+        }
+    ]
+}

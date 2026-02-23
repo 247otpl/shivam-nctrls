@@ -1,0 +1,18 @@
+============================================================
+RAW SESSION START
+Protocol   : ssh
+Destination: 192.168.9.15
+Start Time : 21-02-2026 16:58:28
+============================================================
+terminal length 0
+TEST-PROBUS>terminal datadump
+                     ^
+% Invalid input detected at '^' marker.
+
+TEST-PROBUS>show running-config
+                  ^
+% Invalid input detected at '^' marker.
+
+TEST-PROBUS>
+[21-02-2026 16:58:34] [SESSION_END] SUCCESS
+============================================================

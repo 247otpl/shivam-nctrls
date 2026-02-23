@@ -1,0 +1,32 @@
+{
+    "run_id": "bc46d5e6-9db0-48d3-81ea-2d17daea1d4c",
+    "module": "config_backup",
+    "org_id": "org_001",
+    "site_id": "site_001",
+    "status": "COMPLETED",
+    "start_time": "2026-02-21T10:51:56Z",
+    "end_time": "2026-02-21T10:54:40Z",
+    "total_devices": 5,
+    "results": [
+        {
+            "device_id": "6e1721b0-36da-4eea-999b-fc7ff8cc0022",
+            "status": "SUCCESS"
+        },
+        {
+            "device_id": "e6d90449-f572-41b7-80b2-cc893a787b59",
+            "status": "SUCCESS"
+        },
+        {
+            "device_id": "0b562e50-134b-48d2-9346-25217cc23dbb",
+            "status": "SUCCESS"
+        },
+        {
+            "device_id": "4e053e30-14e3-4e76-a0cb-6bce2720318c",
+            "status": "SUCCESS"
+        },
+        {
+            "device_id": "2320be86-2684-4ef8-bf9c-88dc6a45024d",
+            "status": "SUCCESS"
+        }
+    ]
+}

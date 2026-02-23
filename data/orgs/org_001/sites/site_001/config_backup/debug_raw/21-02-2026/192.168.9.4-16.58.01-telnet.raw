@@ -1,0 +1,297 @@
+============================================================
+RAW SESSION START
+Protocol   : telnet
+Destination: 192.168.9.4
+Start Time : 21-02-2026 16:58:01
+============================================================
+terminal length 0
+% Unrecognized command
+L5-DATA#terminal datadump
+L5-DATA#show running-config
+config-file-header
+L5-DATA
+v1.4.2.4 / R800_NIK_1_4_194_194
+CLI v1.0
+set system mode switch 
+
+file SSD indicator encrypted
+@
+ssd-control-start
+ssd config
+ssd file passphrase control unrestricted
+no ssd file integrity control
+ssd-control-end cb0a3fdb1f3a1af4e4430033719968c0
+!
+cdp device-id format hostname
+vlan database
+vlan 2-6,10,100
+exit
+voice vlan oui-table add 0001e3 Siemens_AG_phone________
+voice vlan oui-table add 00036b Cisco_phone_____________
+voice vlan oui-table add 00096e Avaya___________________
+voice vlan oui-table add 000fe2 H3C_Aolynk______________
+voice vlan oui-table add 0060b9 Philips_and_NEC_AG_phone
+voice vlan oui-table add 00d01e Pingtel_phone___________
+voice vlan oui-table add 00e075 Polycom/Veritel_phone___
+voice vlan oui-table add 00e0bb 3Com_phone______________
+lldp chassis-id host-name
+hostname L5-DATA
+line console
+exec-timeout 0
+exit
+line ssh
+exec-timeout 0
+exit
+line telnet
+exec-timeout 0
+exit
+logging host 10.1.100.200
+logging origin-id hostname
+ip http authentication aaa login-authentication http tacacs local
+aaa authentication login SSH tacacs local
+aaa authentication enable SSH tacacs enable
+aaa accounting login start-stop group tacacs+
+line ssh
+login authentication SSH
+enable authentication SSH
+password da39a3ee5e6b4b0d3255bfef95601890afd80709 encrypted
+exit
+no passwords complexity enable
+passwords aging 0
+username admin password encrypted 19bb1fc36f611cf460add3774f1216099be3abdc privilege 15
+ip ssh server
+snmp-server server
+snmp-server engineID local 8000000903cc8e71cca33d
+snmp-server location "5th Floor"
+no snmp-server trap authentication
+snmp-server view system system included
+snmp-server view interfaces interfaces included
+snmp-server community publicc ro view Default
+snmp-server community OptoNet123 ro view Default
+snmp-server host 10.1.100.100 traps version 2c OptoNet123
+snmp-server host 10.1.100.200 traps version 2c OptoNet123
+ip http timeout-policy 0
+no ip http secure-server
+encrypted tacacs-server host 10.1.100.101 key E3J01YN+MxaoGLf+x5iklbgeGtAVRZyqvFrd0b7nbkY= priority 1
+clock timezone " " +5 minutes 30
+clock source sntp
+sntp unicast client enable
+sntp unicast client poll
+sntp server 192.168.9.1 poll
+ip telnet server
+!
+interface vlan 1
+ ip address 192.168.9.4 255.255.255.0
+ no ip address dhcp
+!
+interface vlan 6
+ name AV
+!
+interface vlan 10
+ name GUEST
+!
+interface vlan 100
+ name "MCSA VLAN 100"
+!
+interface gigabitethernet1
+ spanning-tree portfast
+ switchport mode access
+ lldp optional-tlv 802.1 protocol add rstp
+ lldp management-address automatic
+!
+interface gigabitethernet2
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 2
+!
+interface gigabitethernet3
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 2
+!
+interface gigabitethernet4
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 2
+!
+interface gigabitethernet5
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 2
+!
+interface gigabitethernet6
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 2
+!
+interface gigabitethernet7
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 2
+!
+interface gigabitethernet8
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 2
+!
+interface gigabitethernet9
+ spanning-tree portfast
+ spanning-tree link-type point-to-point
+ switchport mode access
+ switchport access vlan 2
+ macro description switch
+ !next command is internal.
+ macro auto smartport dynamic_type unknown
+!
+interface gigabitethernet10
+ description "D10 Labeled"
+ spanning-tree portfast
+ spanning-tree link-type point-to-point
+ switchport mode access
+ switchport access vlan 100
+ macro description switch
+ !next command is internal.
+ macro auto smartport dynamic_type unknown
+!
+interface gigabitethernet11
+ spanning-tree portfast
+ switchport trunk allowed vlan add 2-6,10,100
+!
+interface gigabitethernet12
+ spanning-tree portfast
+ spanning-tree link-type point-to-point
+ switchport mode access
+ switchport access vlan 2
+ macro description switch
+ !next command is internal.
+ macro auto smartport dynamic_type unknown
+!
+interface gigabitethernet13
+ description "Labled D13"
+ spanning-tree portfast
+ spanning-tree link-type point-to-point
+ switchport trunk allowed vlan add 2-6,10,100
+ macro description switch
+ !next command is internal.
+ macro auto smartport dynamic_type unknown
+!
+interface gigabitethernet14
+ spanning-tree portfast
+ spanning-tree link-type point-to-point
+ switchport mode access
+ switchport access vlan 2
+ macro description switch
+ !next command is internal.
+ macro auto smartport dynamic_type unknown
+!
+interface gigabitethernet15
+ spanning-tree portfast
+ spanning-tree link-type point-to-point
+ switchport mode access
+ switchport access vlan 2
+ macro description switch
+ !next command is internal.
+ macro auto smartport dynamic_type unknown
+!
+interface gigabitethernet16
+ spanning-tree portfast
+ spanning-tree link-type point-to-point
+ switchport mode access
+ switchport access vlan 2
+ macro description switch
+ !next command is internal.
+ macro auto smartport dynamic_type unknown
+!
+interface gigabitethernet17
+ spanning-tree portfast
+ spanning-tree link-type point-to-point
+ switchport mode access
+ switchport access vlan 2
+ macro description switch
+ !next command is internal.
+ macro auto smartport dynamic_type unknown
+!
+interface gigabitethernet18
+ spanning-tree portfast
+ spanning-tree link-type point-to-point
+ switchport mode access
+ switchport access vlan 2
+ macro description switch
+ !next command is internal.
+ macro auto smartport dynamic_type unknown
+!
+interface gigabitethernet19
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 2
+!
+interface gigabitethernet20
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 2
+!
+interface gigabitethernet21
+ spanning-tree portfast
+ spanning-tree link-type point-to-point
+ switchport mode access
+ switchport access vlan 2
+ macro description switch
+ !next command is internal.
+ macro auto smartport dynamic_type unknown
+!
+interface gigabitethernet22
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 2
+!
+interface gigabitethernet23
+ spanning-tree portfast
+ switchport mode access
+ switchport access vlan 2
+!
+interface gigabitethernet24
+ spanning-tree portfast
+ spanning-tree link-type point-to-point
+ switchport trunk allowed vlan add 2-6,10
+ switchport trunk native vlan 100
+ macro description switch
+ !next command is internal.
+ macro auto smartport dynamic_type switch
+!
+interface gigabitethernet25
+ description "FILE SERVER"
+ switchport trunk allowed vlan add 2-6,10,100
+ lldp management-address automatic
+!
+interface gigabitethernet26
+ spanning-tree link-type point-to-point
+ switchport trunk allowed vlan add 2-6,10,100
+ lldp management-address automatic
+ macro description switch
+ !next command is internal.
+ macro auto smartport dynamic_type switch
+!
+interface gigabitethernet27
+ description "Uplink to 5F DGS-1210-28P-GE28"
+ spanning-tree link-type point-to-point
+ switchport trunk allowed vlan add 2-6,10,100
+ lldp management-address automatic
+ macro description switch
+ !next command is internal.
+ macro auto smartport dynamic_type switch
+!
+interface gigabitethernet28
+ description "Uplink from 1F SG350-28P-GE26"
+ spanning-tree link-type point-to-point
+ switchport trunk allowed vlan add 2-6,10,100
+ lldp management-address automatic
+ macro description switch
+ !next command is internal.
+ macro auto smartport dynamic_type switch
+!
+exit
+macro auto processing type router enabled
+ip default-gateway 192.168.9.1
+L5-DATA#
+[21-02-2026 16:58:22] [SESSION_END] SUCCESS
+============================================================

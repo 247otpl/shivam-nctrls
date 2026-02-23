@@ -1,0 +1,16 @@
+{
+    "run_id": "f006329e-5c2a-46ab-adb2-3fe8ae632456",
+    "module": "config_backup",
+    "org_id": "org_001",
+    "site_id": "site_001",
+    "status": "COMPLETED",
+    "start_time": "2026-02-21T12:32:59Z",
+    "end_time": "2026-02-21T12:38:19Z",
+    "total_devices": 1,
+    "results": [
+        {
+            "device_id": "e6d90449-f572-41b7-80b2-cc893a787b59",
+            "status": "SUCCESS"
+        }
+    ]
+}

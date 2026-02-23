@@ -1,0 +1,11 @@
+============================================================
+RAW SESSION START
+Protocol   : telnet
+Destination: 192.168.9.14
+Start Time : 21-02-2026 18:02:59
+============================================================
+!enable!terminal length 0!terminal datadump#2026-02-21 18:06:58,[SSH]/5/Logout the CLI by admin on ssh (10.1.100.34).
+
+[2C[1A!show running-config
+[21-02-2026 18:08:19] [SESSION_END] SUCCESS
+============================================================

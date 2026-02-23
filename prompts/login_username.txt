@@ -1,0 +1,9 @@
+username:
+Username:
+user name:
+User Name:
+login:
+login name:
+/^user\s*name\s*:/i
+User:
+user:

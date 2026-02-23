@@ -1,0 +1,125 @@
+============================================================
+RAW SESSION START
+Protocol   : ssh
+Destination: 192.168.9.15
+Start Time : 23-02-2026 10:57:30
+============================================================
+show version
+
+AlliedWare Plus (TM) 5.5.2 02/16/23 21:09:26
+
+Build name : x230-5.5.2-2.4.rel
+
+ Application Interface Specification Framework
+   Copyright (c) 2002-2004 MontaVista Software, Inc;
+   Copyright (c) 2005-2010 Red Hat, Inc.
+ Autonomic Networking Integrated Model and Approach
+   Copyright (C) 2015-2019 Brian E. Carpenter. All rights reserved.
+   Copyright (c) 2009, Swedish Institute of Computer Science.
+   Copyright (c) 2010, Swedish Institute of Computer Science.
+   Copyright (c) 2012-2014, Thingsquare, http://www.thingsquare.com/.
+   Copyright (c) 2014-2015, Yanzi Networks AB.
+   Copyright (c) 2016, Inria.
+   All rights reserved.
+ Command Line Option Parsing Library
+   Copyright (c) 1998-2002  Red Hat Software Inc.
+ Corosync Cluster Engine
+   Copyright (c) 2002-2004 MontaVista Software, Inc. All rights reserved;
+   Copyright (c) 2005-2010 Red Hat, Inc.
+ cURL
+   Copyright (c) 1996 - 2016, Daniel Stenberg, <daniel@haxx.se>, and many
+[7m[m      contributors. All rights reserved.
+ DHCP Bind
+   Copyright (C) 1996-2019  Internet Systems Consortium, Inc. ("ISC").
+   Copyright (c) 1996-2001  Nominum, Inc.
+   Copyright (c) 1995-2000 by Network Associates, Inc.
+   Copyright (c) 2002 Stichting NLnet, Netherlands, stichting@nlnet.nl.
+   Copyright (c) 1987, 1990, 1993, 1994
+      The Regents of the University of California.  All rights reserved.
+   Copyright (c) The Internet Society 2005.
+      This version of this module is part of RFC 4178; see the RFC itself
+      for full legal notices.
+   Copyright (c) 2004 Masarykova universita
+      (Masaryk University, Brno, Czech Republic).  All rights reserved.
+   Copyright (c) 1997 - 2003 Kungliga Tekniska Högskolan
+      (Royal Institute of Technology, Stockholm, Sweden).
+      All rights reserved.
+   Copyright (c) 1998 Doug Rabson.  All rights reserved.
+   Copyright (c) 2002, Rice University.  All rights reserved.
+   Copyright (c) 1993 by Digital Equipment Corporation.
+   Copyright (c) 2000 Aaron D. Gifford.  All rights reserved.
+   Copyright (c) 1998 Doug Rabson.
+   Copyright (c) 2001 Jake Burkholder.  All rights reserved.
+   Copyright (c) 1995, 1996, 1997, and 1998 WIDE Project.
+[7m[m      All rights reserved.
+   Copyright (c) 1999-2000 by Nortel Networks Corporation
+   Copyright (c) 2000-2002 Japan Network Information Center.
+      All rights reserved.
+   Copyright (c) 2004  Nominet, Ltd.  Portions Copyright RSA Security Inc.
+   Copyright (c) 1996, David Mazieres <dm@uun.org>
+   Copyright (c) 2008, Damien Miller <djm@openbsd.org>
+   Copyright (c) 2000-2001 The OpenSSL Project.  All rights reserved.
+   Copyright (c) 1995, 1997, 1998 The NetBSD Foundation, Inc.
+      All rights reserved.
+   Copyright (c) 2008-2011  Red Hat, Inc.
+   Copyright (c) 2013-2014, Farsight Security, Inc.  All rights reserved.
+   Copyright (c) 2014 by Farsight Security, Inc.
+ DHCP Library
+   Copyright (c) 2004-2020 by Internet Systems Consortium, Inc. ("ISC")
+   Copyright (c) 1995-2003 by Internet Software Consortium.
+ Embedded GNU C Library
+   Copyright (c) 1991 Regents of the University of California.
+      All rights reserved.
+   DNS Resolver from BIND 4.9.5
+      Copyright (c) 1993 by Digital Equipment Corporation.
+   Sun RPC Support
+      Copyright (c) 2010, Oracle America, Inc.
+[7m[m   Mach Operating System
+      Copyright (c) 1991,1990,1989 Carnegie Mellon University.
+         All Rights Reserved.
+   Intel License Agreement
+      Copyright (c) 2000, Intel Corporation.  All rights reserved.
+   Inner Net License
+      Copyright (c) by Craig Metz
+ EventLog
+   Copyright (c) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001,
+      2002, 2003, 2004, 2005 Free Software Foundation, Inc.
+   Copyright (c) 2003 BalaBit IT Ltd.   All rights reserved.
+      Author: Balazs Scheidler
+ Expat
+   Copyright (c) 1998, 1999, 2000 Thai Open Source Software Center Ltd
+      and Clark Cooper.
+   Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006 Expat maintainers.
+ Fast Lexical Analyser Generator
+   Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006, 2007 The Flex Project.
+   Copyright (c) 1990, 1997 The Regents of the University of California.
+      All rights reserved.
+ File Utility Library
+   Copyright (c) Ian F. Darwin 1986-1987, 1989-1992, 1994-1995.
+   Software written by Ian F. Darwin and others;
+[7m[m   maintained 1994- Christos Zoulas.
+ FreeRADIUS
+   Copyright (c) 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008,
+      2009 The FreeRADIUS Server Project
+   Copyright (c) 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008,
+      2009 Alan DeKok <aland@deployingradius.com>.
+   Copyright (c) 1996, 1997, 1999, 2000, 2002, 2003, 2004, 2005
+      Free Software Foundation, Inc.
+   Copyright (c) 2003, 2004, 2005 Kostas Kalevras <kkalev@noc.ntua.gr>
+   Copyright (c) 2004  Cladju Consulting, Inc.
+   Copyright (c) 2001, 2002, 2003, 2004, 2005 Google, Inc.
+   Copyright (c) 2003, 2004  Michael Richardson <mcr@sandelman.ottawa.on.ca>
+   Copyright (c) 2002, 2003, 2004 Novell, Inc.
+   Copyright (c) 2002  Miguel A.L. Paraz <mparaz@mparaz.com>
+   Copyright (c) 2002 Simon Ekstrand <simon@routemeister.net>
+   Copyright (c) 2001  Chad Miller <cmiller@surfsouth.com>
+   Copyright (c) 2001 hereUare Communications, Inc.
+   Copyright (c) 2000 Jochen Friedrich <jochen@scram.de>
+   Copyright (c) 2000, 2002 Miquel van Smoorenburg
+   Copyright (c) 2000  Jeff Carneal <jeff@apex.net>
+   Copyright (c) 2000  Alan Curry <pacman@world.std.com>
+   Copyright (c) 2000  David Kerry <davidk@snti.com>
+   Copyright (c) 2000  Dmitri Ageev <d_ageev@ortcc.ru>
+[7m[m
+[23-02-2026 10:57:34] [SESSION_END] SUCCESS
+============================================================

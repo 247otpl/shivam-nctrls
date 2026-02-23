@@ -1,0 +1,26 @@
+from pathlib import Path
+import json
+from .base_logger import BaseLogger
+from .retention_manager import RetentionManager
+
+class CommandExecutorLogger(BaseLogger):
+
+    def __init__(self, base_dir, org_id, site_id):
+        super().__init__(base_dir, org_id, site_id, "command_executor")
+
+        self.log_dir = self.module_dir / "logs"
+        self.log_dir.mkdir(parents=True, exist_ok=True)
+        self.retention = RetentionManager(self.module_dir)
+
+def write_log(self):
+
+    log_file = self.log_dir / f"{self.run_id}.json"
+
+    with open(log_file, "w", encoding="utf-8") as f:
+        json.dump(self.metadata, f, indent=4)
+
+    # 🔵 Apply retention cleanup
+    self.retention.cleanup_logs(self.log_dir)
+
+    output_dir = self.module_dir / "outputs"
+    self.retention.cleanup_output_runs(output_dir)

@@ -1,0 +1,67 @@
+[
+    {
+        "device_id": "6e1721b0-36da-4eea-999b-fc7ff8cc0022",
+        "mgmt_ip": "192.168.9.3",
+        "protocol": "both",
+        "vendor": "cisco",
+        "hostname": null,
+        "status": "ACTIVE",
+        "created_at": "2026-02-21T10:43:09Z",
+        "updated_at": "2026-02-21T10:43:09Z",
+        "last_seen_at": null,
+        "last_backup_at": null,
+        "last_command_at": null
+    },
+    {
+        "device_id": "e6d90449-f572-41b7-80b2-cc893a787b59",
+        "mgmt_ip": "192.168.9.14",
+        "protocol": "telnet",
+        "vendor": "unknown",
+        "hostname": null,
+        "status": "DISABLED",
+        "created_at": "2026-02-21T10:43:09Z",
+        "updated_at": "2026-02-21T10:43:09Z",
+        "last_seen_at": null,
+        "last_backup_at": null,
+        "last_command_at": null
+    },
+    {
+        "device_id": "0b562e50-134b-48d2-9346-25217cc23dbb",
+        "mgmt_ip": "192.168.9.4",
+        "protocol": "both",
+        "vendor": "unknown",
+        "hostname": null,
+        "status": "DISABLED",
+        "created_at": "2026-02-21T10:43:09Z",
+        "updated_at": "2026-02-21T10:43:09Z",
+        "last_seen_at": null,
+        "last_backup_at": null,
+        "last_command_at": null
+    },
+    {
+        "device_id": "4e053e30-14e3-4e76-a0cb-6bce2720318c",
+        "mgmt_ip": "192.168.9.5",
+        "protocol": "ssh",
+        "vendor": "unknown",
+        "hostname": null,
+        "status": "DISABLED",
+        "created_at": "2026-02-21T10:43:09Z",
+        "updated_at": "2026-02-21T10:43:09Z",
+        "last_seen_at": null,
+        "last_backup_at": null,
+        "last_command_at": null
+    },
+    {
+        "device_id": "2320be86-2684-4ef8-bf9c-88dc6a45024d",
+        "mgmt_ip": "192.168.9.15",
+        "protocol": "ssh",
+        "vendor": "unknown",
+        "hostname": null,
+        "status": "ACTIVE",
+        "created_at": "2026-02-21T10:43:09Z",
+        "updated_at": "2026-02-21T10:43:09Z",
+        "last_seen_at": null,
+        "last_backup_at": null,
+        "last_command_at": null
+    }
+]
