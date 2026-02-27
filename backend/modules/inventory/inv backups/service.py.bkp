@@ -12,7 +12,7 @@ from .mini_executor import MiniExecutor
 from backend.api.routes.provisioning import get_registry_path, load_registry
 from .change_detector import detect_inventory_changes
 from backend.core.execution_planner import ExecutionPlanner
-from backend.core.credentials import load_credentials
+
 
 
 # -------------------------------------------------
@@ -133,34 +133,18 @@ def collect_device_inventory(base_dir, org_id, site_id, device):
 
     raw_output = ""
     status = "SUCCESS"
-    site_dir = (
-        base_dir
-        / "data"
-        / "orgs"
-        / org_id
-        / "sites"
-        / site_id
-    )
-
-    cred_dir = site_dir / "inventory" / "credentials"
-
-    username, password = load_credentials(cred_dir, base_dir)
 
     try:
-        executor = MiniExecutor(
-            username=username,
-            password=password
-        )
+        executor = MiniExecutor()
         commands = adapter.collect_commands()
         raw_output = executor.run_commands(device, commands)
 
         collected = adapter.parse(raw_output)
 
-    except Exception as e:
-        print("INVENTORY ERROR:", device["device_id"], str(e))
+    except Exception:
         collected = {}
         status = "FAILED"
-        
+
     # Detect changes before update
     changes = detect_inventory_changes(existing["inventory"], collected)
 
@@ -214,7 +198,7 @@ def collect_device_inventory(base_dir, org_id, site_id, device):
 # -------------------------------------------------
 # BULK COLLECTION FUNCTION SITE-WIDE
 # -------------------------------------------------
-#from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 
 def collect_site_inventory(base_dir, org_id, site_id):
@@ -230,26 +214,44 @@ def collect_site_inventory(base_dir, org_id, site_id):
     success = 0
     failed = 0
 
-    for device in devices:
-        result = collect_device_inventory(
-            base_dir,
-            org_id,
-            site_id,
-            device
-        )
+    with ThreadPoolExecutor(max_workers=10) as executor:
 
-        status = result["last_inventory_collection_status"]
+        future_to_device = {
+            executor.submit(
+                collect_device_inventory,
+                base_dir,
+                org_id,
+                site_id,
+                device
+            ): device for device in devices
+        }
 
-        if status == "SUCCESS":
-            success += 1
-        else:
-            failed += 1
+        for future in as_completed(future_to_device):
 
-        results.append({
-            "device_id": device["device_id"],
-            "status": status
-        })
-        
+            device = future_to_device[future]
+
+            try:
+                result = future.result()
+
+                status = result["last_inventory_collection_status"]
+
+                if status == "SUCCESS":
+                    success += 1
+                else:
+                    failed += 1
+
+                results.append({
+                    "device_id": device["device_id"],
+                    "status": status
+                })
+
+            except Exception:
+                failed += 1
+                results.append({
+                    "device_id": device["device_id"],
+                    "status": "FAILED"
+                })
+
     return {
         "org_id": org_id,
         "site_id": site_id,

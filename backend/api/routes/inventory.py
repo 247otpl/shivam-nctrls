@@ -9,6 +9,7 @@ from backend.api.routes.provisioning import get_registry_path, load_registry
 from backend.modules.inventory.service import collect_site_inventory
 from backend.modules.inventory.contract_monitor import evaluate_site_contracts
 from backend.modules.inventory.contract_monitor import evaluate_site_contracts
+from backend.core.execution_planner import ExecutionPlanner
 
 
 router = APIRouter()
@@ -18,10 +19,15 @@ router = APIRouter()
 def collect_inventory(org_id: str, site_id: str, device_id: str):
 
     BASE_DIR = Path(__file__).resolve().parents[3]
-    registry_path = get_registry_path(BASE_DIR, org_id, site_id)
 
-    devices = load_registry(registry_path)
+    planner = ExecutionPlanner(BASE_DIR)
 
+    devices = planner.get_devices(
+        org_id=org_id,
+        site_id=site_id,
+        mode="site"
+    )
+    
     device = next(
         (d for d in devices if d["device_id"] == device_id),
         None
