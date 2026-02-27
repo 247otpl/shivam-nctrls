@@ -1,18 +1,16 @@
 # backend/modules/inventory/service.py
 
 from pathlib import Path
-from datetime import datetime
-from datetime import timezone
+from datetime import datetime, timezone
 import json
-import paramiko
+
+from backend.core.execution_planner import ExecutionPlanner
+from backend.core.credentials import load_credentials
 
 from .vendor_detection import resolve_vendor
 from .adapters import get_adapter
 from .mini_executor import MiniExecutor
-from backend.api.routes.provisioning import get_registry_path, load_registry
 from .change_detector import detect_inventory_changes
-from backend.core.execution_planner import ExecutionPlanner
-from backend.core.credentials import load_credentials
 
 
 # -------------------------------------------------
@@ -36,11 +34,26 @@ def get_inventory_path(base_dir, org_id, site_id):
     return path
 
 
-def load_inventory(path):
+def get_debug_path(base_dir, org_id, site_id):
 
+    path = (
+        base_dir
+        / "data"
+        / "orgs"
+        / org_id
+        / "sites"
+        / site_id
+        / "inventory"
+        / "debug_raw"
+    )
+
+    path.mkdir(parents=True, exist_ok=True)
+    return path
+
+
+def load_inventory(path):
     if not path.exists():
         return []
-
     return json.loads(path.read_text())
 
 
@@ -54,34 +67,35 @@ def save_inventory(path, data):
 
 def update_field(field, new_value):
 
-    # Respect manual override
     if field.get("source") == "manual":
         return field
 
     field["value"] = new_value
     field["source"] = "auto"
-    field["last_updated"] = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+    field["last_updated"] = (
+        datetime.now(timezone.utc)
+        .isoformat()
+        .replace("+00:00", "Z")
+    )
 
     return field
 
 
 # -------------------------------------------------
-# MAIN COLLECTION FUNCTION
+# SINGLE DEVICE COLLECTION
 # -------------------------------------------------
 
 def collect_device_inventory(base_dir, org_id, site_id, device):
 
     inventory_path = get_inventory_path(base_dir, org_id, site_id)
+    debug_path = get_debug_path(base_dir, org_id, site_id)
+
     inventory_data = load_inventory(inventory_path)
 
     existing = next(
         (d for d in inventory_data if d["device_id"] == device["device_id"]),
         None
     )
-
-    # -------------------------------------------------
-    # CREATE BASE RECORD IF NOT EXIST
-    # -------------------------------------------------
 
     if not existing:
         existing = {
@@ -102,37 +116,9 @@ def collect_device_inventory(base_dir, org_id, site_id, device):
         inventory_data.append(existing)
 
     # -------------------------------------------------
-    # RESOLVE VENDOR (Priority-Based)
+    # LOAD CREDENTIALS
     # -------------------------------------------------
 
-    vendor = resolve_vendor(device, existing, base_dir)
-
-    # Ensure vendor field exists
-    if "vendor" not in existing["inventory"]:
-        existing["inventory"]["vendor"] = {
-            "value": "",
-            "source": "auto",
-            "last_updated": ""
-        }
-
-    # Update vendor field safely
-    existing["inventory"]["vendor"] = update_field(
-        existing["inventory"]["vendor"],
-        vendor
-    )
-
-    # -------------------------------------------------
-    # LOAD ADAPTER
-    # -------------------------------------------------
-
-    adapter = get_adapter(vendor)
-
-    # -------------------------------------------------
-    # SSH CONNECTION
-    # -------------------------------------------------
-
-    raw_output = ""
-    status = "SUCCESS"
     site_dir = (
         base_dir
         / "data"
@@ -142,33 +128,68 @@ def collect_device_inventory(base_dir, org_id, site_id, device):
         / site_id
     )
 
-    cred_dir = site_dir / "inventory" / "credentials"
-
+    cred_dir = site_dir / "config_backup" / "credentials"
     username, password = load_credentials(cred_dir, base_dir)
 
+    # -------------------------------------------------
+    # VENDOR RESOLUTION
+    # -------------------------------------------------
+
+    vendor = resolve_vendor(device, existing, base_dir)
+
+    if "vendor" not in existing["inventory"]:
+        existing["inventory"]["vendor"] = {
+            "value": "",
+            "source": "auto",
+            "last_updated": ""
+        }
+
+    existing["inventory"]["vendor"] = update_field(
+        existing["inventory"]["vendor"],
+        vendor
+    )
+
+    adapter = get_adapter(vendor)
+
+    # -------------------------------------------------
+    # COMMAND EXECUTION
+    # -------------------------------------------------
+
+    raw_output = ""
+    status = "SUCCESS"
+
     try:
-        executor = MiniExecutor(
-            username=username,
-            password=password
-        )
+        executor = MiniExecutor(username=username, password=password)
         commands = adapter.collect_commands()
+        
+        print("DEVICE:", device["device_id"])
+        print("VENDOR:", vendor)
+        print("COMMANDS:", commands)
+
         raw_output = executor.run_commands(device, commands)
+
+        # Save raw debug
+        debug_file = debug_path / f"{device['device_id']}.txt"
+        debug_file.write_text(raw_output)
 
         collected = adapter.parse(raw_output)
 
     except Exception as e:
-        print("INVENTORY ERROR:", device["device_id"], str(e))
+        print("INVENTORY ERROR:", device["device_id"])
+        print("ERROR TYPE:", type(e))
+        print("ERROR:", str(e))
         collected = {}
         status = "FAILED"
-        
-    # Detect changes before update
+    
+    # -------------------------------------------------
+    # CHANGE DETECTION
+    # -------------------------------------------------
+
     changes = detect_inventory_changes(existing["inventory"], collected)
 
-    # Store change log
     if changes:
         if "change_log" not in existing:
             existing["change_log"] = []
-
         existing["change_log"].extend(changes)
 
     # -------------------------------------------------
@@ -198,24 +219,21 @@ def collect_device_inventory(base_dir, org_id, site_id, device):
                 collected[key]
             )
 
-    # -------------------------------------------------
-    # FINAL STATUS UPDATE
-    # -------------------------------------------------
-
     existing["last_inventory_collection_status"] = status
-    existing["last_inventory_collection_time"] = datetime.now().isoformat()
+    existing["last_inventory_collection_time"] = (
+        datetime.now(timezone.utc)
+        .isoformat()
+        .replace("+00:00", "Z")
+    )
 
     save_inventory(inventory_path, inventory_data)
 
     return existing
 
 
-
 # -------------------------------------------------
-# BULK COLLECTION FUNCTION SITE-WIDE
+# SITE COLLECTION (NO THREADING)
 # -------------------------------------------------
-#from concurrent.futures import ThreadPoolExecutor, as_completed
-
 
 def collect_site_inventory(base_dir, org_id, site_id):
 
@@ -226,11 +244,13 @@ def collect_site_inventory(base_dir, org_id, site_id):
         site_id=site_id,
         mode="site"
     )
+
     results = []
     success = 0
     failed = 0
 
     for device in devices:
+
         result = collect_device_inventory(
             base_dir,
             org_id,
@@ -249,7 +269,7 @@ def collect_site_inventory(base_dir, org_id, site_id):
             "device_id": device["device_id"],
             "status": status
         })
-        
+
     return {
         "org_id": org_id,
         "site_id": site_id,
